@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#f7858d">
+    <meta name="msapplication-navbutton-color" content="#f7858d">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#f7858d">
+    <title>didikala | Profile Page</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/vendor/materialdesignicons.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/css/vendor/bootstrap.min.css">
+    <!-- Plugins -->
+    <link rel="stylesheet" href="~/css/vendor/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="~/css/vendor/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/vendor/jquery.horizontalmenu.css">
+    <link rel="stylesheet" href="~/css/vendor/fancybox.min.css">
+    <link rel="stylesheet" href="~/css/vendor/nice-select.css">
+    <link rel="stylesheet" href="~/css/vendor/nouislider.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/colors/default.css" id="colorswitch">
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Start header -->
+        <header class="main-header mx-5">
+            <!-- Start ads -->
+            <div class="ads-header-wrapper">
+                <a href="#" class="ads-header hidden-sm" target="_blank"
+                    style="background-image:url(/img/banner/large-ads.jpg)"></a>
+            </div>
+            <!-- End ads -->
+          <div class="container main-container">
+                <div class="topbar dt-sl">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-6">
+                            <div class="logo-area">
+                                <a href="#">
+                                    <img src="~/assets/img/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-5 hidden-sm">
+                            <div class="search-area dt-sl">
+                                <form action="" class="search">
+                                    <input type="text" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+                                    <i class="far fa-search search-icon"></i>
+                                    <button class="close-search-result" type="button"><i class="mdi mdi-close"></i></button>
+                                    <div class="search-result">
+                                        <ul>
+                                            <li>
+                                                <a href="#">موبایل</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">مد و پوشاک</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">میکروفن</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">میز تلویزیون</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6 topbar-left">
+                            <ul class="nav float-left">
+                                <li class="nav-item account dropdown">
+                                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="label-dropdown">حساب کاربری</span>
+                                        <i class="mdi mdi-account-circle-outline"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-left">
+                                        <a class="dropdown-item" href="#">
+                                            <i class="mdi mdi-account-card-details-outline"></i>پروفایل
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <span class="float-left badge badge-dark">۴</span>
+                                            <i class="mdi mdi-comment-text-outline"></i>پیغام ها
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="mdi mdi-account-edit-outline"></i>ویرایش حساب کاربری
+                                        </a>
+                                        <div class="dropdown-divider" role="presentation"></div>
+                                        <a class="dropdown-item" href="/admin/home/logout">
+                                            <i class="mdi mdi-logout-variant"></i>خروج
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-header dt-sl mb-sm-bottom-header">
+                <div class="container main-container">
+                    <!-- Start Main-Menu -->
+                   
+                    <!-- End Main-Menu -->
+                </div>
+            </div>
+         
+        </header>
+        <!-- End header -->
+        <!-- Start main-content -->
+        <main class="main-content dt-sl mb-3">
+            <div class="container main-container">
+                <div class="row">
+                    <!-- Start Sidebar -->
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 sticky-sidebar">
+                        <div class="profile-sidebar dt-sl">
+                            @await Component.InvokeAsync("UserInfo")
+                       <div class="dt-sl dt-sn mb-3 text-center">
+                                <a href="#">
+                                    <img src="./assets/img/banner/sidebar-banner-3.jpg" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                            <div class="dt-sl dt-sn border mb-3">
+                                <div class="profile-menu-section dt-sl">
+                                    <div class="label-profile-menu mt-2 mb-2">
+                                        <span>حساب کاربری شما</span>
+                                    </div>
+                                    <div class="profile-menu">
+                                        <ul>
+                                            <li>
+                                                <a href="#" class="active">
+                                                    <i class="mdi mdi-account-circle-outline"></i>
+                                                    پروفایل
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/school/index">
+                                                    <i class="mdi mdi-book-open-variant"></i>
+                                                   مدارس
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/classroom/index">
+                                                    <i class="mdi mdi-backburger"></i>
+                                                    کلاسها
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/account/index">
+                                                    <i class="mdi mdi-heart-outline"></i>
+                                                    کاربران
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/role/index">
+                                                    <i class="mdi mdi-glasses"></i>
+                                                   نقش ها
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/student/index">
+                                                    <i class="mdi mdi-sign-direction"></i>
+                                                    دانش آموزان
+                                                </a>
+                                            </li>
+                                             <li>
+                                                <a href="/admin/account/teacher">
+                                                    <i class="mdi mdi-sign-direction"></i>
+                                                    لیست دبیران
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/course/index">
+                                                    <i class="mdi mdi-eye-outline"></i>
+                                                    درس
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <i class="mdi mdi-account-edit-outline"></i>
+                                                    اطلاعات شخصی
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Sidebar -->
+                    <!-- Start Content -->
+                    <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12">
+                        @RenderBody()
+                        
+                    </div>
+                    <!-- End Content -->
+                </div>
+              
+            </div>
+        </main>
+
+           <div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content" id="ModalContent">
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- End main-content -->
+        <!-- Start footer -->
+       
+        <!-- End footer -->
+    </div>
+    <!-- colorPanel -->
+    
+    <!-- end colorPanel -->
+    <!-- Core JS Files -->
+    <script src="~/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="~/js/vendor/popper.min.js"></script>
+    <script src="~/js/vendor/bootstrap.min.js"></script>
+    <!-- Plugins -->
+    <script src="~/js/vendor/bootstrap-slider.min.js"></script>
+    <script src="~/js/vendor/owl.carousel.min.js"></script>
+    <script src="~/js/vendor/owl.carousel2.thumbs.min.js"></script>
+    <script src="~/js/vendor/jquery.nicescroll.min.js"></script>
+    <script src="~/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="~/js/vendor/nouislider.min.js"></script>
+    <script src="~/js/vendor/jquery.horizontalmenu.js"></script>
+    <script src="~/js/vendor/jquery.fancybox.min.js"></script>
+    <script src="~/js/vendor/countdown.min.js"></script>
+    <script src="~/js/vendor/wNumb.js"></script>
+    <script src="~/js/vendor/ResizeSensor.min.js"></script>
+    <script src="~/js/vendor/theia-sticky-sidebar.min.js"></script>
+    <!-- Main JS File -->
+    <script src="~/js/vendor/adminSite.js"></script>
+   
+      <script src="~/js/vendor/main.js"></script>
+
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+    @RenderSection("Scripts",false)
+
+</body>
+
+</html>

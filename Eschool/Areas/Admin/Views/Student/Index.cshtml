@@ -1,0 +1,84 @@
+﻿@model List<ESchool.Application.Application.Contracts.Student.StudentViewModel>
+
+<div class="row mt-5">
+    <div class="col-12">
+            <div class="section-title text-sm-title title-wide mb-1 no-after-title-wide dt-sl mb-2 px-res-1" style="display: inline">
+                <h2 >لیست دانش آموزان</h2>
+            </div>
+             <a  type="button" class="btn btn-primary mt-res-1 mb-2 w-10" href="#showmodal=/admin/student/register?handler=register"  style="position:relative;right:600px">
+                <i class="mdi mdi-new-box"></i>
+               دانش آموز جدید
+            </a>  
+          
+        <div class="dt-sl">
+            <div class="table-responsive">
+                <table class="table table-order">
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام </th>
+                            <th>فامیلی</th>
+                            <th>کدملی</th>  
+                            <th>عملیات </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            <tr id="studyclass-table">
+                              <td>@item.Id</td> 
+                              <td>@item.Name</td> 
+                              <td>@item.Family</td>
+                              <td>@item.NationalCode</td>
+                              <td>
+                              
+                                <button class="btn btn-info d-block w-100 mb-2" onclick="editAccount(@item.Id)" >ویرایش
+                                    </button>
+                                <button class="btn text-light bg-danger d-block w-100" data-model-id="@item.Id" onclick="deleteAccount(@item.Id)">حذف</button>
+                            </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  @section Scripts {
+    <script src="~/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="~/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/js/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable();
+        });
+    </script>
+}
+<script>
+    function deleteAccount(id) {
+  var classRoomlId = id;
+  $.ajax({
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    type: "DELETE",
+    url: "./Delete?id="+ classRoomlId,
+    success: function (data) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "کلاس با موفقیت حذف شد",
+        confirmButtonText: "اوکی",
+      }).then(function (result) {
+        location.reload();
+      });
+    },
+    error: function (err) {      
+    },
+  });
+  
+}
+</script>

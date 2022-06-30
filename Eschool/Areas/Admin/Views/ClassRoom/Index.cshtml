@@ -1,0 +1,191 @@
+﻿@model List<ESchool.Application.Application.Contracts.ClassRoom.ClassRoomViewModel>
+
+<div class="row mt-5">
+    <div class="col-12">
+            <div class="section-title text-sm-title title-wide mb-1 no-after-title-wide dt-sl mb-2 px-res-1" style="display: inline">
+                <h2 >لیست کلاسها</h2>
+            </div>
+             <button onclick="createClassRoom()" class="btn btn-primary mt-res-1 mb-2 w-10" style="position:relative;right:600px">
+                <i class="mdi mdi-new-box"></i>
+                 کلاس جدید
+            </button>       
+        <div class="dt-sl">
+            <div class="table-responsive">
+                <table class="table table-order">
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام کلاس</th>
+                            <th>پایه تحصیلی</th>
+                            <th>کد مدرسه</th>
+                            <th>عملیات </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                              
+                            <tr id="studyclass-table">
+                              <td>@item.Id</td>
+                              <td>@item.Name</td> 
+                              <td>@item.Level</td>
+                              <td>@item.SchoolCode</td>
+                              <td>
+                              
+                                <button class="btn btn-info d-block w-100 mb-2" onclick="editClassRoom(@item.Id)" >ویرایش
+                                    </button>
+                                <button class="btn text-light bg-danger d-block w-100" data-model-id="@item.Id" onclick="deleteClassRoom(@item.Id)">حذف</button>
+                            </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/vendor/jquery-3.4.1.min.js"></script>
+
+<script>
+
+function createClassRoom() {
+  Swal.fire({
+    title: "کلاس جدید",
+    html:
+      '<input type="text" id="swal-input1" class="swal2-input" placeholder="نام کلاس" style=direction:rtl>' +
+      '<input type="text" id="swal-input2" class="swal2-input" placeholder="پایه تحصیلی" style=direction:rtl>' +
+      '<input type="text" id="swal-input3" class="swal2-input" placeholder="کد مدرسه" style=direction:rtl>', 
+        showCancelButton:true,
+        cancelButtonText: 'لغو',
+        showConfirmButton:true,
+        confirmButtonText: 'جدید',
+        showCloseButton:true,
+  }).then((result) => {
+    if (result.value)
+    {
+        var name = $("#swal-input1").val();
+        var level = $("#swal-input2").val();
+        var schoolCode = $("#swal-input3").val();
+        var postData = {
+            name: name,
+            level:level,
+            schoolCode: schoolCode,
+        };
+    } 
+    $.ajax({ 
+      dataType: "json",
+      type: "POST",
+      url: "./Create",
+      data: postData,
+      success:function (data) { 
+        Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'کلاس جدید با موفقیت اضافه شد',         
+        confirmButtonText: 'اوکی',
+    }).then(function (result) 
+    {
+        location.reload();          
+    });          
+      }, 
+      error: function (err) 
+      {  
+        swal.fire(
+            'ناموفق!',
+            data.message,
+            'danger'
+        );
+      }
+    });
+   
+  });
+}
+function editClassRoom(id) 
+{
+  var classRoomId=id;
+  $.ajax({ 
+    dataType: "json",
+    type: "Get",
+    url: "./Edit?id="+classRoomId,
+    success:function(data)
+    {
+      Swal.fire({
+          title: "ویرایش کلاس",
+          html:
+            '<input type="text" id="swal-input1" class="swal2-input" placeholder="نام کلاس" style=direction:rtl value="" >' +
+             '<input type="text" id="swal-input2" class="swal2-input" placeholder="پایه تحصیلی" style=direction:rtl value="">' +
+            '<input type="text" id="swal-input3" class="swal2-input" placeholder="کد مدرسه" style=direction:rtl value="">' +
+             '<input type="hidden" id="swal-input4" class="swal2-input" value="">',
+            showCancelButton:true,
+            cancelButtonText: 'لغو',
+            showConfirmButton:true,
+            confirmButtonText: 'ویرایش',
+            showCloseButton:true,
+      }).then((result) => {
+            var name = $("#swal-input1").val();
+            var level = $("#swal-input2").val();
+            var schoolCode = $("#swal-input3").val();
+            var id = $("#swal-input4").val();
+        var postData = {
+            name: name,
+            level:level,
+            schoolCode: schoolCode,
+            id:id,
+        };
+        postEditClassRoom(postData);
+      });
+     
+       $("#swal-input1").val(data.name);
+       $("#swal-input2").val(data.level);
+       $("#swal-input3").val(data.schoolCode);
+       $("#swal-input4").val(id);
+    },
+  });
+debugger;
+}
+function postEditClassRoom(command){
+  
+   $.ajax({ 
+  dataType: "json",
+  type: "POST",
+  url: "./Edit",
+  data: command,
+  success:function (data) { 
+    Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'کلاس با موفقیت ویرایش شد',         
+    confirmButtonText: 'اوکی',
+})
+.then(function (result) 
+{
+    location.reload();          
+});
+  }
+});
+}
+
+function deleteClassRoom(id) {
+  var classRoomlId = id;
+  $.ajax({
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    type: "DELETE",
+    url: "./Delete?id="+ classRoomlId,
+    success: function (data) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "کلاس با موفقیت حذف شد",
+        confirmButtonText: "اوکی",
+      }).then(function (result) {
+        location.reload();
+      });
+    },
+    error: function (err) {      
+    },
+  });
+  
+}
+</script>

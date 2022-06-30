@@ -1,0 +1,145 @@
+﻿@model ESchool.Web.Areas.Admin.Models.SchoolIndexViewModel
+
+<div class="row mt-5">
+    <div class="col-12">
+            <div class="section-title text-sm-title title-wide mb-1 no-after-title-wide dt-sl mb-2 px-res-1" style="display: inline">
+                <h2 >لیست مدارس</h2>
+            </div>
+                <div class="form-row dropdown-item-icon">
+           
+            </div>
+             <button onclick="createSchool()" class="btn btn-primary mt-res-1 mb-2 w-10" style="position:relative;right:600px">
+                <i class="mdi mdi-new-box"></i>
+                 مدرسه جدید
+            </button>       
+        <div class="dt-sl">
+            <div class="table-responsive">
+                <table class="table table-order">
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام مدرسه</th>
+                            <th>مدیر مدرسه</th>
+                            <th>کد مدرسه</th>
+                            <th>عملیات </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model.School)
+                        {
+                            <tr id="studyclass-table">
+
+                                     <td>@item.Id </td>
+                                     <td>@item.Name </td>
+                                     <td>@item.Code</td>
+                                     
+                                @foreach(var acc in Model.Account.Where(x=>x.Id==@item.AccountId))
+                                {
+                                
+                                     <td>@acc.Fullname </td>
+                                }
+                              
+                              <td>
+                                                                                                                
+                                    <a class="btn btn-info d-block w-100 mb-2" data-model-id="@item.Id" href="#showmodal=/admin/school/edit?id=@item.Id" >ویرایش
+                                    </a>
+                                <button class="btn text-light bg-danger d-block w-100" data-model-id="@item.Id" onclick="deleteSchool(@item.Id)">حذف</button>
+                            </td>
+                            
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ @section Scripts {
+    <script src="~/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="~/js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/js/plugins/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').dataTable();
+        });
+    </script>
+}
+
+<script>
+function createSchool() {
+  Swal.fire({
+    title: "مدرسه جدید",
+    html:
+      '<input type="text" id="swal-input1" class="swal2-input" placeholder="نام مدرسه" style=direction:rtl>' +
+      '<input type="text" id="swal-input2" class="swal2-input" placeholder="کد مدرسه" style=direction:rtl>', 
+        showCancelButton:true,
+        cancelButtonText: 'لغو',
+        showConfirmButton:true,
+        confirmButtonText: 'جدید',
+        showCloseButton:true,
+  }).then((result) => {
+    if (result.value)
+    {
+        var name = $("#swal-input1").val();
+        var code = $("#swal-input2").val();
+        var postData = {
+            name: name,
+            code: code,
+        };
+    } 
+    $.ajax({ 
+      dataType: "json",
+      type: "POST",
+      url: "./Create",
+      data: postData,
+      success:function (data) { 
+        Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'مدرسه جدید با موفقیت اضافه شد',         
+        confirmButtonText: 'اوکی',
+    }).then(function (result) 
+    {
+        location.reload();          
+    });          
+      }, 
+      error: function (err) 
+      {  
+        swal.fire(
+            'ناموفق!',
+            data.message,
+            'danger'
+        );
+      }
+    });
+   
+  });
+}
+
+function deleteSchool(id) {
+  var SchoolId = id;
+  $.ajax({
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    type: "DELETE",
+    url: "./Delete?id="+ SchoolId,
+    success: function (data) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "مدرسه با موفقیت حذف شد",
+        confirmButtonText: "اوکی",
+      }).then(function (result) {
+        location.reload();
+      });
+    },
+    error: function (err) {      
+    },
+  });
+  
+}
+</script>

@@ -1,0 +1,87 @@
+﻿@using Framework.Application
+@model AuthViewModel
+<div class="row">
+    <div class="col-xl-6 col-lg-12">
+        <div class="px-3">
+            <div class="section-title text-sm-title title-wide mb-1 no-after-title-wide dt-sl mb-2">
+                <h2>اطلاعات شخصی</h2>
+            </div>
+            <div class="profile-section dt-sl">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="label-info">
+                            <span>نام و نام خانوادگی:</span>
+                        </div>
+                        <div class="value-info">
+                            <span>@Model.Fullname</span>
+                        </div>
+                    </div>
+                 
+                    <div class="col-md-6 col-sm-12">
+                        <div class="label-info">
+                            <span>شماره تلفن همراه:</span>
+                        </div>
+                        <div class="value-info">
+                            <span>@Model.Mobile</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="label-info">
+                            <span>کد پرسنلی:</span>
+                        </div>
+                        <div class="value-info">
+                            <span>@Model.Username</span>
+                        </div>
+                    </div>
+                         <div class="col-md-6 col-sm-12">
+                        <div class="label-info">
+                            <span>سمت</span>
+                        </div>
+                        <div class="value-info">
+                            <span>@Model.Role</span>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="profile-section-link">
+                    <a href="#" class="border-bottom-dt">
+                        <i class="mdi mdi-account-edit-outline"></i>
+                        ویرایش اطلاعات شخصی
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*@section userInfo{
+    <div class="dt-sl dt-sn border mb-3">
+    <div class="profile-sidebar-header dt-sl">
+        <div class="d-flex align-items-center">
+            <div class="profile-avatar">
+                <img src="~/img/theme/avatar.png" alt="">
+            </div>
+            <div class="profile-header-content mr-3 mt-2">
+                <span class="d-block profile-username">@Model.Fullname</span>
+                <span class="d-block profile-phone">@Model.Mobile</span>
+            </div>
+        </div>
+                                    
+        <div class="profile-link mt-2 dt-sl">
+            <div class="row">
+                <div class="col-6 text-center">
+                    <a href="#">
+                        <i class="mdi mdi-lock-reset"></i>
+                        <span class="d-block">تغییر رمز</span>
+                    </a>
+                </div>
+                <div class="col-6 text-center">
+                    <a href="/admin/home/logout">
+                        <i class="mdi mdi-logout-variant"></i>
+                        <span href="/home/Index" class="d-block">خروج از حساب</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}*@

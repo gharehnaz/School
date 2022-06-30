@@ -1,0 +1,71 @@
+﻿@model ESchool.Application.Application.Contracts.Course.EditCourse
+@{
+    ViewData["Title"] = "انتخاب معلم";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto">
+        <div class="logo-area text-center mb-3">
+            <a href="#"><img src="~/img/logo.png" class="img-fluid" alt="logo"></a>
+        </div>
+        <div class="auth-wrapper form-ui border pt-4">
+            <div class="section-title title-wide mb-1 no-after-title-wide">
+                <h2 class="font-weight-bold">انتخاب معلم</h2>
+            </div>
+           
+            <form action="./Edit" 
+              method="post"           
+              data-ajax="true"
+              data-callback=""
+              data-action="Refresh"
+              enctype="multipart/form-data">
+              <div class="form-row-title">
+                    <h3>نام درس </h3>
+                </div>
+                <div class="form-row with-icon">
+                    <input type="text" value="@Model.Name" asp-for="Name" class="input-ui pr-2" placeholder="نام و نام خانوادگی">
+                    <i class="mdi mdi-account-circle-outline"></i>
+                </div>
+                 <div class="form-row-title">
+                    <h3>کد درس</h3>
+                </div>
+                <div class="form-row with-icon">
+                    <input type="text" value="@Model.Code" asp-for="Code" class="input-ui pr-2" placeholder="کد درس ">
+                    <i class="mdi mdi-account-circle-outline"></i>
+                </div>
+
+                 <div class="form-row-title">
+                    <h3>انتخاب معلم</h3>
+                </div>
+                <div class="form-row dropdown-item-icon">
+                <select class="form-control" asp-for="AccountId" 
+                        asp-items='new SelectList(Model.Teachers, "Id", "Fullname")'>
+                        <option value="0">انتخاب معلم</option>
+                </select>
+                </div>
+                  <div class="form-row-title">
+                    <h3>کلاس</h3>
+                </div>
+                <div class="form-row dropdown-item-icon">
+                <select class="form-control" asp-for="ClassRoomId" 
+                            asp-items='new SelectList(Model.ClassRooms, "Id", "Name")'>
+                        <option value="0">کلاس</option>
+                    </select>
+                </div>
+                 <input type="hidden" asp-for=Id/>
+
+                <div class="form-row mt-3">
+                    <button type="submit"  class="btn-primary-cm btn-with-icon mx-auto w-100">
+                        <i class="mdi mdi-account-circle-outline"></i>
+                        افزودن
+                    </button>
+                </div>
+            </form>
+           
+        </div>
+    </div>
+</div>
+
+
+

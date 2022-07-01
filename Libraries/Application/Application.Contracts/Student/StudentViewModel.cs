@@ -25,6 +25,8 @@ namespace ESchool.Application.Application.Contracts.Student
         public string CreationDate { get; set; }
         public List<RoleViewModel> Roles { get ; set; }
         public List<ClassRoomViewModel> ClassRooms { get; set; }
+        public string ClassRoomName { get; set; }
+
 
 
     }

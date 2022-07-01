@@ -1,11 +1,9 @@
-﻿using ESchool.Application.Application.Contracts.Account;
-using ESchool.Application.Application.Contracts.ClassRoom;
-using ESchool.Application.Application.Contracts.Role;
+﻿using ESchool.Application.Application.Contracts.ClassRoom;
 using ESchool.Application.Application.Contracts.Student;
+using Framework.Application;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
 
 namespace ESchool.Web.Areas.Admin.Controllers
 {
@@ -19,11 +17,15 @@ namespace ESchool.Web.Areas.Admin.Controllers
         public SelectList ClassRoom;
         private readonly IStudentApplication _studentApplication;
         private readonly IClassRoomApplication _classRoomApplication;
+        private readonly IAuthHelper _authHelper;
 
-        public StudentController(IStudentApplication studentApplication, IClassRoomApplication classRoomApplication)
+        public StudentController(IStudentApplication studentApplication,
+            IClassRoomApplication classRoomApplication,
+            IAuthHelper authHelper)
         {
             _studentApplication = studentApplication;
             _classRoomApplication = classRoomApplication;
+            _authHelper=authHelper;
         }
    
         public IActionResult Index(StudentSearchModel searchModel)
@@ -38,7 +40,7 @@ namespace ESchool.Web.Areas.Admin.Controllers
         {
             var command = new RegisterStudent
             {
-                ClassRooms = _classRoomApplication.GetClassRoom()
+                ClassRooms = _classRoomApplication.GetClassRoom(_authHelper.CurrentAccountInfo().Id)
             };
             return PartialView(command);
         }

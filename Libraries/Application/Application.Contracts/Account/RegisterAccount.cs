@@ -16,6 +16,7 @@ namespace ESchool.Application.Application.Contracts.Account
         public string Mobile { get; set; }
 
         public long RoleId { get; set; }
+        public long SchoolId { get; set; }
 
         public IFormFile ProfilePhoto { get; set; }
         public List<RoleViewModel> Roles { get; set; }

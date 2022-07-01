@@ -50,19 +50,23 @@ namespace ESchool.Application.Application
                 Mobile = account.Mobile
             };
         }
-       
+        public long GetSchoolIdBy(long id)
+        {
+            var schoolId = _accountRepository.GetSchoolIdByAccountId(id);
+            return schoolId;
+        }
+
         public OperationResult Register(RegisterAccount command,long id)
         {
             var operation = new OperationResult();
 
             if (_accountRepository.Exists(x => x.Username == command.Username || x.Mobile == command.Mobile))
                 return operation.Failed("");
-            //var schoolId = GetSchoolId(id);
             var password = _passwordHasher.Hash(command.Password);
             var path = $"profilePhotos";
             var picturePath = _fileUploader.Upload(command.ProfilePhoto, path);
             var account = new Account(command.Fullname, command.Username, password, command.Mobile, command.RoleId,
-                picturePath);
+                picturePath,command.SchoolId);
             _accountRepository.Create(account);
             _accountRepository.SaveChanges();
             return operation.Succedded();

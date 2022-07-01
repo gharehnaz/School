@@ -9,3 +9,15 @@ C:\Users\Mahdi\Desktop\Eschool2\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchoo
 C:\Users\Mahdi\Desktop\Eschool2\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.dll
 C:\Users\Mahdi\Desktop\Eschool2\Libraries\ESchool.Domain\obj\Debug\net6.0\ref\ESchool.Domain.dll
 C:\Users\Mahdi\Desktop\Eschool2\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.pdb
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.dll
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\obj\Debug\net6.0\ref\ESchool.Domain.dll
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.pdb
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\bin\Debug\net6.0\ESchool.Domain.deps.json
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\bin\Debug\net6.0\ESchool.Domain.dll
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\bin\Debug\net6.0\ref\ESchool.Domain.dll
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\bin\Debug\net6.0\ESchool.Domain.pdb
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.csproj.AssemblyReference.cache
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.AssemblyInfoInputs.cache
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.AssemblyInfo.cs
+C:\Users\Mahdi\Desktop\Eschool\Libraries\ESchool.Domain\obj\Debug\net6.0\ESchool.Domain.csproj.CoreCompileInputs.cache

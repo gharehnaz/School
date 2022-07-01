@@ -28,6 +28,7 @@ namespace Framework.Application
 
             var claims = _contextAccessor.HttpContext.User.Claims.ToList();
             result.Id = long.Parse(claims.FirstOrDefault(x => x.Type == "AccountId").Value);
+            //result.SchoolId = long.Parse(claims.FirstOrDefault(x => x.Type == "SchoolId").Value);
             result.Mobile = claims.FirstOrDefault(x => x.Type == "Mobile").Value; 
             result.Username = claims.FirstOrDefault(x => x.Type == "Username").Value;
             result.RoleId = long.Parse(claims.FirstOrDefault(x => x.Type == ClaimTypes.Role).Value);

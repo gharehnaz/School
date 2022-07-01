@@ -34,17 +34,18 @@ namespace ESchool.Web.Areas.Admin.Controllers
             Roles = new SelectList(_roleApplication.List(), "Id", "Name");
             return View(Accounts);
          }
-        //public IActionResult Teacher()
-        //{
-        //    Accounts = _accountApplication.GetTeachers(_authHelper.CurrentAccountInfo().Id);
-        //    return View();
-        //}
+        public IActionResult Teacher()
+        {
+            Accounts = _accountApplication.GetTeachers(_authHelper.CurrentAccountInfo().Id);
+            return View(Accounts);
+        }
 
         public IActionResult Register()
         {
             var command = new RegisterAccount
             {
-                Roles = _roleApplication.List()
+                Roles = _roleApplication.List(),
+                SchoolId= _accountApplication.GetSchoolIdBy(_authHelper.CurrentAccountInfo().Id)
             };
             return PartialView(command);
         }
@@ -52,6 +53,7 @@ namespace ESchool.Web.Areas.Admin.Controllers
         [HttpPost]
         public JsonResult Register(RegisterAccount command)
         {
+            command.SchoolId = _accountApplication.GetSchoolIdBy(_authHelper.CurrentAccountInfo().Id);
             var result = _accountApplication.Register(command, _authHelper.CurrentAccountInfo().Id);
             return new JsonResult(result); 
         }

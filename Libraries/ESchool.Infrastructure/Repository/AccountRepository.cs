@@ -18,7 +18,13 @@ namespace ESchool.Infrastructure.Repository
         {
             _context = context;
         }
+        public long GetSchoolIdByAccountId(long id)
+        {
+            var result = _context.Schools.Single(x => x.AccountId == id);
+            var schoolId=result.Id;
+            return schoolId;
 
+        }
         public Account GetBy(string username)
         {
             return _context.Accounts.FirstOrDefault(x => x.Username == username);
@@ -70,7 +76,7 @@ namespace ESchool.Infrastructure.Repository
         }
         public List<AccountViewModel> GetTeachers(long id)
         {
-            return _context.Accounts.Include(x=>x.School).ThenInclude(o=>o.AccountId).Where(x => x.Role.Name == "معلم" ).Select(x => new AccountViewModel
+            return _context.Accounts.Where(x =>  x.School.AccountId == id ).Select(x => new AccountViewModel
             {
                 Id = x.Id,
                 Fullname = x.Fullname,
@@ -133,6 +139,6 @@ namespace ESchool.Infrastructure.Repository
 
         }
 
-       
+        
     }
 }

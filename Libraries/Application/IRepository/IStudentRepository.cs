@@ -11,6 +11,7 @@ namespace ESchool.Application.IRepository
         Student GetBy(string username);
         EditStudent GetDetails(long id);
         List<StudentViewModel> GetStudents();
+        List<StudentViewModel> GetStudentOfClassByClassId(long id);
         List<StudentViewModel> Search(StudentSearchModel searchModel);
     }
 }

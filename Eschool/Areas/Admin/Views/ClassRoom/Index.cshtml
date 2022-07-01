@@ -34,6 +34,8 @@
                               
                                 <button class="btn btn-info d-block w-100 mb-2" onclick="editClassRoom(@item.Id)" >ویرایش
                                     </button>
+                                    <a class="btn btn-success d-block w-100 mb-2" href="/admin/classroom/StudentOfClass?id=@item.Id" >دانش آموزان کلاس
+                                </a>
                                 <button class="btn text-light bg-danger d-block w-100" data-model-id="@item.Id" onclick="deleteClassRoom(@item.Id)">حذف</button>
                             </td>
                             </tr>

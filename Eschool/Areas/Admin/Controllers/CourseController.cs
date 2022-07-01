@@ -1,6 +1,7 @@
 ﻿using ESchool.Application.Application.Contracts.Account;
 using ESchool.Application.Application.Contracts.ClassRoom;
 using ESchool.Application.Application.Contracts.Course;
+using Framework.Application;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,21 +20,28 @@ namespace ESchool.Web.Areas.Admin.Controllers
         private readonly IAccountApplication _accountApplication;
         private readonly ICourseApplication _courseApplication;
         private readonly IClassRoomApplication _classRoomApplication;
+        private readonly IAuthHelper _authHelper;
 
-        public CourseController(ICourseApplication courseApplication, IClassRoomApplication classRoomApplication, IAccountApplication accountApplication)
-        {
-            _courseApplication = courseApplication;
-            _classRoomApplication = classRoomApplication;
-            _accountApplication = accountApplication;
-        }
+        public CourseController
+        (
+        ICourseApplication courseApplication, 
+        IClassRoomApplication classRoomApplication, 
+        IAccountApplication accountApplication,
+        IAuthHelper authHelper
+        )
+            {
+                _courseApplication = courseApplication;
+                _classRoomApplication = classRoomApplication;
+                _accountApplication = accountApplication;
+                _authHelper = authHelper;
+            }
    
         public IActionResult Index(CourseSearchModel searchModel)
         {
             Courses = _courseApplication.Search(searchModel);
             Courses = _courseApplication.GetCourses();
-            ClassRoom = new SelectList(_classRoomApplication.GetClassRoom(), "Id", "Name");
-            Teacher = new SelectList(_accountApplication.GetTeachers(), "Id", "Fullname");
-
+            ClassRoom = new SelectList(_classRoomApplication.GetClassRoom(_authHelper.CurrentAccountInfo().Id), "Id", "Name");
+            Teacher = new SelectList(_accountApplication.GetTeachers(_authHelper.CurrentAccountInfo().Id), "Id", "Fullname");
             return View(Courses);
          }
 
@@ -57,8 +65,8 @@ namespace ESchool.Web.Areas.Admin.Controllers
         public IActionResult Edit(long id)
         {
             var result = _courseApplication.GetDetails(id);
-            result.Teachers = _accountApplication.GetTeachers();
-            result.ClassRooms=_classRoomApplication.GetClassRoom();
+            result.Teachers = _accountApplication.GetTeachers(_authHelper.CurrentAccountInfo().Id);
+            result.ClassRooms=_classRoomApplication.GetClassRoom(_authHelper.CurrentAccountInfo().Id);
             return PartialView(result);
         }
 

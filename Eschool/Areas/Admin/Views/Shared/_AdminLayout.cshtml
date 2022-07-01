@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Framework.Infrastructure
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService _auth;
 <html lang="fa">
 
 <head>
@@ -129,57 +131,97 @@
                                     <div class="label-profile-menu mt-2 mb-2">
                                         <span>حساب کاربری شما</span>
                                     </div>
-                                    <div class="profile-menu">
-                                        <ul>
-                                            <li>
-                                                <a href="#" class="active">
-                                                    <i class="mdi mdi-account-circle-outline"></i>
-                                                    پروفایل
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/school/index">
-                                                    <i class="mdi mdi-book-open-variant"></i>
-                                                   مدارس
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/classroom/index">
-                                                    <i class="mdi mdi-backburger"></i>
-                                                    کلاسها
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/account/index">
-                                                    <i class="mdi mdi-heart-outline"></i>
-                                                    کاربران
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/role/index">
-                                                    <i class="mdi mdi-glasses"></i>
-                                                   نقش ها
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/student/index">
-                                                    <i class="mdi mdi-sign-direction"></i>
-                                                    دانش آموزان
-                                                </a>
-                                            </li>
-                                             <li>
-                                                <a href="/admin/account/teacher">
-                                                    <i class="mdi mdi-sign-direction"></i>
-                                                    لیست دبیران
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/course/index">
-                                                    <i class="mdi mdi-eye-outline"></i>
-                                                    درس
-                                                </a>
-                                            </li>
-                                            <li>
+                                  
+                                        <div class="profile-menu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#" class="active">
+                                                        <i class="mdi mdi-account-circle-outline"></i>
+                                                        پروفایل
+                                                    </a>
+                                                </li>
+                                                @if (User.IsInRole(SystemRoles.Administrator))
+                                            {     
+                                                    <li>
+                                                        <a href="/admin/school/index">
+                                                            <i class="mdi mdi-book-open-variant"></i>
+                                                            مدرسه
+                                                        </a>
+                                                    </li>
+                                                     <li>
+                                                        <a href="/admin/role/index">
+                                                            <i class="mdi mdi-glasses"></i>
+                                                           نقش ها
+                                                        </a>
+                                                    </li>
+                                                     <li>
+                                                        <a href="/admin/account/index">
+                                                            <i class="mdi mdi-heart-outline"></i>
+                                                            کاربران
+                                                        </a>
+                                                    </li>
+                                                         <li>
+                                                        <a href="/admin/classroom/index">
+                                                            <i class="mdi mdi-backburger"></i>
+                                                            کلاسها
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/admin/student/index">
+                                                            <i class="mdi mdi-sign-direction"></i>
+                                                            دانش آموزان
+                                                        </a>
+                                                    </li>
+                                                     <li>
+                                                        <a href="/admin/account/teacher">
+                                                            <i class="mdi mdi-sign-direction"></i>
+                                                            لیست دبیران
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/admin/course/index">
+                                                            <i class="mdi mdi-eye-outline"></i>
+                                                            درس
+                                                        </a>
+                                                    </li>
+                                                }
+                                                @if (User.IsInRole(SystemRoles.Manager))
+                                                {
+                                                     <li>
+                                                        <a href="/admin/classroom/index">
+                                                            <i class="mdi mdi-backburger"></i>
+                                                            کلاسها
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/admin/student/index">
+                                                            <i class="mdi mdi-sign-direction"></i>
+                                                            دانش آموزان
+                                                        </a>
+                                                    </li>
+                                                     <li>
+                                                        <a href="/admin/account/teacher">
+                                                            <i class="mdi mdi-sign-direction"></i>
+                                                            لیست دبیران
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/admin/course/index">
+                                                            <i class="mdi mdi-eye-outline"></i>
+                                                            درس
+                                                        </a>
+                                                    </li> 
+                                                }
+                                                @if (User.IsInRole(SystemRoles.Teacher))
+                                                {
+                                                    <li>
+                                                        <a href="/admin/course/index">
+                                                            <i class="mdi mdi-eye-outline"></i>
+                                                            درس
+                                                        </a>
+                                                    </li> 
+                                                }
+                                                <li>
                                                 <a href="#">
                                                     <i class="mdi mdi-account-edit-outline"></i>
                                                     اطلاعات شخصی
@@ -187,6 +229,7 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

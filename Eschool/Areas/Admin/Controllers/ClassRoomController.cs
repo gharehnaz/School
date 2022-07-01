@@ -1,9 +1,9 @@
 ﻿using ESchool.Application.Application.Contracts.ClassRoom;
 using ESchool.Application.Application.Contracts.School;
+using ESchool.Application.Application.Contracts.Student;
 using Framework.Application;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace ESchool.Web.Areas.Admin.Controllers
 {
@@ -15,26 +15,36 @@ namespace ESchool.Web.Areas.Admin.Controllers
         public List<ClassRoomViewModel> ClassRooms;
         private readonly IClassRoomApplication _classRoomApplication;
         private readonly ISchoolApplication _schoolApplication;
+        private readonly IStudentApplication _studentApplication;
+
         private readonly IAuthHelper _authHelper;
-        public ClassRoomController(IClassRoomApplication classRoomApplication, ISchoolApplication schoolApplication, IAuthHelper authHelper)
+        public ClassRoomController(
+            IClassRoomApplication classRoomApplication, 
+            ISchoolApplication schoolApplication, 
+            IStudentApplication studentApplication,
+            IAuthHelper authHelper)
         {
             _classRoomApplication = classRoomApplication;
             _schoolApplication = schoolApplication;
+            _studentApplication = studentApplication;
             _authHelper = authHelper;
         }
    
         public IActionResult Index(ClassRoomSearchModel searchModel)
         {
             ClassRooms = _classRoomApplication.Search(searchModel);
-
             ClassRooms = _classRoomApplication.GetClassRoom(_authHelper.CurrentAccountInfo().Id);
-
             return View(ClassRooms);
         }
 
         public IActionResult Create()
         {
             return PartialView(new CreateClassRoom());
+        }
+        public IActionResult StudentOfClass(long id)
+        {
+            var result = _studentApplication.GetStudentOfClassByClassId(id);
+            return View(result);
         }
 
         [HttpPost]

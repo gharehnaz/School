@@ -39,6 +39,21 @@ namespace ESchool.Infrastructure.Repository
             }).FirstOrDefault(x => x.Id == id);
         }
 
+        public List<StudentViewModel> GetStudentOfClassByClassId(long id)
+        {
+            var result = _context.Students.
+                Include(x=>x.ClassRoom).Where(x => x.ClassRoomId == id).Select(x => new StudentViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Family = x.Family,
+                NationalCode = x.NationalCode,
+                ClassRoomName = x.ClassRoom.Name
+            });
+            var x = result;
+            return result.ToList();
+        }
+
         public List<StudentViewModel> GetStudents()
         {
             return _context.Students.Select(x => new StudentViewModel
@@ -47,6 +62,7 @@ namespace ESchool.Infrastructure.Repository
                 Name = x.Name,
                 Family= x.Family,
                 NationalCode = x.NationalCode,
+                ClassRoomName=x.ClassRoom.Name
                 
             }).ToList();
         }

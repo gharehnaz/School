@@ -11,7 +11,6 @@ namespace ESchool.Application.Application.Contracts.ClassRoom
         EditClassRoom GetDetails(long id);
         List<ClassRoomViewModel> GetClassRoom();
         List<ClassRoomViewModel> GetClassRoom(long id);
-
         List<ClassRoomViewModel> Search(ClassRoomSearchModel searchModel);
     }
 }

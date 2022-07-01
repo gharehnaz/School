@@ -2,14 +2,6 @@ using ESchool.Infrastructure.Configuration;
 using Framework.Application;
 using Framework.Infrastructure;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 
@@ -50,10 +42,10 @@ namespace ESchool.Web
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminArea",
-                    builder => builder.RequireRole(new List<string> { SystemRoles.Administrator, SystemRoles.Manager }));
+                    builder => builder.RequireRole(new List<string> { SystemRoles.Administrator, SystemRoles.Manager, SystemRoles.Teacher }));
 
                 options.AddPolicy("ClassRoom",
-                    builder => builder.RequireRole(new List<string> { SystemRoles.Administrator, SystemRoles.Manager }));
+                    builder => builder.RequireRole(new List<string> { SystemRoles.Administrator, SystemRoles.Manager, SystemRoles.Teacher }));
 
                 options.AddPolicy("Role",
                     builder => builder.RequireRole(new List<string> { SystemRoles.Administrator }));
@@ -65,7 +57,7 @@ namespace ESchool.Web
                 options.AddPolicy("Student",
                     builder => builder.RequireRole(new List<string> { SystemRoles.Manager }));
                 options.AddPolicy("Course",
-                    builder => builder.RequireRole(new List<string> { SystemRoles.Administrator,SystemRoles.Manager }));
+                    builder => builder.RequireRole(new List<string> { SystemRoles.Administrator,SystemRoles.Manager, SystemRoles.Teacher }));
 
             });
 

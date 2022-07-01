@@ -111,6 +111,9 @@ namespace ESchool.Application.Application
             return _studentRepository.Search(searchModel);
         }
 
-        
+        public List<StudentViewModel> GetStudentOfClassByClassId(long id)
+        {
+            return _studentRepository.GetStudentOfClassByClassId(id);
+        }
     }
 }

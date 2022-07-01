@@ -24,13 +24,14 @@ namespace ESchool.Domain.AccountAgg
         }
 
         public Account(string fullname, string username, string password, string mobile,
-            long roleId, string profilePhoto)
+            long roleId, string profilePhoto,long schoolId)
         {
             Fullname = fullname;
             Username = username;
             Password = password;
             Mobile = mobile;
             RoleId = roleId;
+            SchoolId=schoolId;
 
             if (roleId == 0)
                 RoleId = 2;

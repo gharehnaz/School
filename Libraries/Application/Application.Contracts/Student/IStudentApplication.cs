@@ -13,5 +13,7 @@ namespace ESchool.Application.Application.Contracts.Student
         EditStudent GetDetails(long id);
         List<StudentViewModel> Search(StudentSearchModel searchModel);
         List<StudentViewModel> GetStudents();
+        List<StudentViewModel> GetStudentOfClassByClassId(long id);
+
     }
 }

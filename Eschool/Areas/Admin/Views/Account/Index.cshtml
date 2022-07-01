@@ -17,7 +17,9 @@
                         <tr>
                             <th>ردیف</th>
                             <th>نام کاربری</th>
-                            <th>نقش</th>  
+                            <th>نقش</th> 
+                            <th>کد مدرسه</th>
+                            <th>مدرسه</th> 
                             <th>عملیات </th>
                         </tr>
                     </thead>
@@ -28,6 +30,8 @@
                               <td>@item.Id</td> 
                               <td>@item.Fullname</td> 
                               <td>@item.Role</td>
+                              <td>@item.SchoolCode</td>
+                               <td>@item.SchoolName</td> 
                               <td>
                               
                                 <button class="btn btn-info d-block w-100 mb-2" onclick="editAccount(@item.Id)" >ویرایش

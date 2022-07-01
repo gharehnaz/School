@@ -16,5 +16,6 @@ namespace ESchool.Application.IRepository
         AccountViewModel GetAccountByName(string name);
         long GetSchoolIdByAccountId(long id);
         List<AccountViewModel> Search(AccountSearchModel searchModel);
+        int GetSchoolCodeByAccountId(long id);
     }
 }

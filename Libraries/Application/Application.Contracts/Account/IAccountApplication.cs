@@ -19,5 +19,6 @@ namespace ESchool.Application.Application.Contracts.Account
         List<AccountViewModel> GetTeachers();
         List<AccountViewModel> GetTeachers(long id);
         long GetSchoolIdBy(long id);
+        int GetSchoolCodeIdByAccountId(long id);
     }
 }

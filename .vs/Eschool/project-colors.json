@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "de73fa12-0d8b-4343-9d56-bf39d0e013fa": {
+      "ProjectGuid": "de73fa12-0d8b-4343-9d56-bf39d0e013fa",
+      "DisplayName": "Eschool",
+      "ColorIndex": 0
+    },
+    "0354a995-835f-46a2-b3d5-a094cfcde369": {
+      "ProjectGuid": "0354a995-835f-46a2-b3d5-a094cfcde369",
+      "DisplayName": "ESchool.Application",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "1c333f6e-1180-42d0-9d05-6e5c858a4071": {
+      "ProjectGuid": "1c333f6e-1180-42d0-9d05-6e5c858a4071",
+      "DisplayName": "ESchool.Infrastructure",
+      "ColorIndex": 2
+    },
+    "d680bcff-1cbc-4cc8-8a94-63c566a55ae3": {
+      "ProjectGuid": "d680bcff-1cbc-4cc8-8a94-63c566a55ae3",
+      "DisplayName": "ESchool.Domain",
+      "ColorIndex": 3
+    },
+    "fb256825-73ef-477b-b302-96cb6b8ccb59": {
+      "ProjectGuid": "fb256825-73ef-477b-b302-96cb6b8ccb59",
+      "DisplayName": "Framework",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}

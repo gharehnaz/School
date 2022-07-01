@@ -55,7 +55,7 @@ namespace ESchool.Web
                 options.AddPolicy("School",
                     builder => builder.RequireRole(new List<string> { SystemRoles.Administrator}));
                 options.AddPolicy("Student",
-                    builder => builder.RequireRole(new List<string> { SystemRoles.Manager }));
+                    builder => builder.RequireRole(new List<string> { SystemRoles.Manager , SystemRoles.Administrator }));
                 options.AddPolicy("Course",
                     builder => builder.RequireRole(new List<string> { SystemRoles.Administrator,SystemRoles.Manager, SystemRoles.Teacher }));
 

@@ -2,6 +2,7 @@
 using ESchool.Application.Application.Contracts.Role;
 using ESchool.Application.Application.Contracts.School;
 using Framework.Application;
+using Framework.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,15 +17,25 @@ namespace ESchool.Web.Areas.Admin.Controllers
         public AccountSearchModel SearchModel;
         public List<AccountViewModel> Accounts;
         public SelectList Roles;
+        public SelectList Schooles;
+
         private readonly IAccountApplication _accountApplication;
+        private readonly ISchoolApplication _schoolApplication;
+
         private readonly IRoleApplication _roleApplication;
         private readonly IAuthHelper _authHelper;
 
-        public AccountController(IAccountApplication accountApplication, IRoleApplication roleApplication, IAuthHelper authHelper)
+
+        public AccountController(
+            IAccountApplication accountApplication, 
+            IRoleApplication roleApplication,
+            ISchoolApplication schoolApplication,
+            IAuthHelper authHelper)
         {
             _accountApplication = accountApplication;
             _roleApplication = roleApplication;
             _authHelper=authHelper;
+            _schoolApplication=schoolApplication;
         }
    
         public IActionResult Index(AccountSearchModel searchModel)
@@ -39,23 +50,46 @@ namespace ESchool.Web.Areas.Admin.Controllers
             Accounts = _accountApplication.GetTeachers(_authHelper.CurrentAccountInfo().Id);
             return View(Accounts);
         }
-
+      
         public IActionResult Register()
         {
-            var command = new RegisterAccount
+            if (_authHelper.CurrentAccountInfo().RoleId==long.Parse(SystemRoles.Administrator))
             {
-                Roles = _roleApplication.List(),
-                SchoolId= _accountApplication.GetSchoolIdBy(_authHelper.CurrentAccountInfo().Id)
-            };
-            return PartialView(command);
+                var command = new RegisterAccount
+                {
+                    Roles = _roleApplication.List(),
+                    Schooles = _schoolApplication.GetSchool()
+                };
+                Schooles = new SelectList(_schoolApplication.GetSchool(), "Id", "Name"); 
+                return PartialView(command);
+            }
+            else
+            {
+                var command = new RegisterAccount
+                {
+                    Roles = _roleApplication.List(),
+                    SchoolId= _accountApplication.GetSchoolIdBy(_authHelper.CurrentAccountInfo().Id),
+                };
+                return PartialView(command);
+            }
+            
         }
 
         [HttpPost]
         public JsonResult Register(RegisterAccount command)
         {
+            if (_authHelper.CurrentAccountInfo().RoleId == long.Parse(SystemRoles.Administrator))
+            {
+                var result = _accountApplication.Register(command, _authHelper.CurrentAccountInfo().Id);
+                return new JsonResult(result);
+            }
+            else
+            {
             command.SchoolId = _accountApplication.GetSchoolIdBy(_authHelper.CurrentAccountInfo().Id);
             var result = _accountApplication.Register(command, _authHelper.CurrentAccountInfo().Id);
-            return new JsonResult(result); 
+                return new JsonResult(result);
+            }
+            
         }
       
         public JsonResult Edit(long id)

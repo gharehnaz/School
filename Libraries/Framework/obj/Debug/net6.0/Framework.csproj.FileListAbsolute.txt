@@ -17,7 +17,6 @@ C:\Users\Mahdi\Desktop\Eschool\Libraries\Framework\bin\Debug\net6.0\Framework.de
 C:\Users\Mahdi\Desktop\Eschool\Libraries\Framework\bin\Debug\net6.0\Framework.dll
 C:\Users\Mahdi\Desktop\Eschool\Libraries\Framework\bin\Debug\net6.0\ref\Framework.dll
 C:\Users\Mahdi\Desktop\Eschool\Libraries\Framework\bin\Debug\net6.0\Framework.pdb
-C:\Users\Mahdi\Desktop\Eschool\Libraries\Framework\obj\Debug\net6.0\Framework.csproj.AssemblyReference.cache
 C:\Users\Mahdi\Desktop\Eschool\Libraries\Framework\obj\Debug\net6.0\Framework.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Mahdi\Desktop\Eschool\Libraries\Framework\obj\Debug\net6.0\Framework.AssemblyInfoInputs.cache
 C:\Users\Mahdi\Desktop\Eschool\Libraries\Framework\obj\Debug\net6.0\Framework.AssemblyInfo.cs

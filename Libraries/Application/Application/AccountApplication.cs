@@ -51,9 +51,12 @@ namespace ESchool.Application.Application
             };
         }
         public long GetSchoolIdBy(long id)
+        {   
+            return _accountRepository.GetSchoolIdByAccountId(id);
+        }
+        public int GetSchoolCodeIdByAccountId(long id)
         {
-            var schoolId = _accountRepository.GetSchoolIdByAccountId(id);
-            return schoolId;
+            return _accountRepository.GetSchoolCodeByAccountId(id);
         }
 
         public OperationResult Register(RegisterAccount command,long id)

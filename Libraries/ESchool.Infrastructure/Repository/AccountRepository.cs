@@ -20,10 +20,11 @@ namespace ESchool.Infrastructure.Repository
         }
         public long GetSchoolIdByAccountId(long id)
         {
-            var result = _context.Schools.Single(x => x.AccountId == id);
-            var schoolId=result.Id;
-            return schoolId;
-
+            return  _context.Schools.FirstOrDefault(x => x.AccountId == id).Id;
+        }
+        public int GetSchoolCodeByAccountId(long id)
+        {
+            return _context.Schools.FirstOrDefault(x => x.AccountId == id).Code;
         }
         public Account GetBy(string username)
         {
@@ -45,12 +46,14 @@ namespace ESchool.Infrastructure.Repository
 
         public List<AccountViewModel> GetAccounts()
         {
-            return _context.Accounts.Select(x => new AccountViewModel
+            return _context.Accounts.Include(x => x.School).Select(x => new AccountViewModel
             {
                 Id = x.Id,
                 Fullname = x.Fullname,
                 RoleId=x.RoleId,
-                Role=x.Role.Name,         
+                Role=x.Role.Name,
+                SchoolCode=x.School.Code,
+                SchoolName=x.School.Name,
             }).ToList();
         }
 

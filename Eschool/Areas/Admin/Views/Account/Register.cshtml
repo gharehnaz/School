@@ -49,6 +49,15 @@
                         <option value="0">نقش</option>
                     </select>
                 </div>
+                    <div class="form-row-title">
+                    <h3>مدرسه</h3>
+                </div>
+                <div class="form-row dropdown-item-icon">
+                <select class="form-control" asp-for="SchoolId" 
+                            asp-items='new SelectList(Model.Schooles, "Id", "Name")'>
+                        <option value="0">مدرسه</option>
+                    </select>
+                </div>
                 <div class="form-row-title">
                     <h3>رمز عبور</h3>
                 </div>
